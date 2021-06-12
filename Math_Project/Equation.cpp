@@ -1,6 +1,6 @@
-﻿#include "Equatuon.h"
+﻿#include "Equation.h"
 
-void Equatuon::training()
+void Equation::training()
 {
 
 	srand(time(NULL));

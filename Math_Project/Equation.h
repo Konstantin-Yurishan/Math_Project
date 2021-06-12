@@ -4,7 +4,7 @@
 #include <string>
 #include <chrono>
 
-class Equatuon
+class Equation
 {
 private:
 
@@ -16,7 +16,7 @@ private:
 	
 public:
 
-	Equatuon(int repeat) : repeat{ repeat }, x{ 0 }, y{ 0 }, result{ 0 }, score{ repeat } {};
+	Equation(int repeat) : repeat{ repeat }, x{ 0 }, y{ 0 }, result{ 0 }, score{ repeat } {};
 
 	void setX(int x) { this->x = x; }
 	void setY(int y) { this->y = y; }

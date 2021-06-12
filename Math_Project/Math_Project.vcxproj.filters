@@ -18,12 +18,12 @@
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Equatuon.cpp">
+    <ClCompile Include="Equation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Equatuon.h">
+    <ClInclude Include="Equation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

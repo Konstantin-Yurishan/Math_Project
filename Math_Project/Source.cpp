@@ -13,7 +13,7 @@
 
 
 #include <iostream>
-#include "Equatuon.h"
+#include "Equation.h"
 
 
 int main()
@@ -24,7 +24,7 @@ int main()
 	std::cout << "Enter the repeat number:";
 	std::cin >> repeat;
 
-	Equatuon training(repeat);
+	Equation training(repeat);
 
 	training.training();
 
