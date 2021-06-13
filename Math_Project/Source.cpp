@@ -8,23 +8,23 @@
 *------------------------------
 * Сетевое взаимодействие клиент\сервер, P2P
 * Бот для телеграм
-* 
 */
-
 
 #include <iostream>
 #include "Equation.h"
 
-
 int main()
 {
 
-	int repeat = 0;
+	int repeat, range;
 
 	std::cout << "Enter the repeat number:";
 	std::cin >> repeat;
 
-	Equation training(repeat);
+	std::cout << "Enter the difficulty(0, 1, 2):";
+	std::cin >> range;
+
+	Equation training(repeat, range);
 
 	training.training();
 

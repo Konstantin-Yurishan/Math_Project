@@ -8,8 +8,22 @@ void Equation::training()
 	std::chrono::steady_clock sc;//объект класса часы
 	auto start = sc.now();//берем тек время
 
-	int answear, num;
+
+	int answear, num, range;
 	std::string sign = "";
+
+	if (difficult == 0) {
+		range = 10;
+	}
+	else if (difficult == 1) {
+		range = 100;
+	}
+	else if (difficult == 2) {
+		range = 1000;
+	}
+	else {
+		range = 10;
+	}
 
 	while (repeat) {
 
@@ -17,20 +31,20 @@ void Equation::training()
 
 		if (num == 0) { //+
 			sign = " + ";
-			x = rand() % 10;
-			y = rand() % 10;
+			x = rand() % (range - (-range)) + (-range);
+			y = rand() % (range - (-range)) + (-range);
 			result = x + y;
 		}
 		else if (num == 1) {//-
 			sign = " - ";
-			x = rand() % 10;
-			y = rand() % 10;
+			x = rand() % (range - (-range)) + (-range);
+			y = rand() % (range - (-range)) + (-range);
 			result = x - y;
 		}
 		else if (num == 2) {//*
 			sign = " * ";
-			x = rand() % 10;
-			y = rand() % 10;
+			x = rand() % (range - (-range)) + (-range);
+			y = rand() % (range - (-range)) + (-range);
 			result = x * y;
 		}
 		else {// /
@@ -38,10 +52,10 @@ void Equation::training()
 			sign = " / ";
 
 			while (true) {
-				x = rand() % 10;
-				y = rand() % (10 - 1) + 1;
+				x = rand() % (range - (-range)) + (-range);
+				y = rand() % (range - (-range)) + (-range);
 
-				if (x < y || x % y != 0) { continue; }
+				if (x < y || x % y != 0 || y == 0) { continue; }
 				else { break; }
 			}
 

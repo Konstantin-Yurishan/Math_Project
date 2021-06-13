@@ -13,10 +13,12 @@ private:
 	int result;
 	int repeat;
 	int score;
+	int difficult;
 	
 public:
 
-	Equation(int repeat) : repeat{ repeat }, x{ 0 }, y{ 0 }, result{ 0 }, score{ repeat } {};
+	Equation(int repeat, int difficult) : repeat{ repeat }, x{ 0 }, y{ 0 }, result{ 0 }, score{ repeat }, difficult{ difficult } {};
+	
 
 	void setX(int x) { this->x = x; }
 	void setY(int y) { this->y = y; }
@@ -28,8 +30,10 @@ public:
 	int getResult() { return result; }
 	int getRepeat() { return repeat; }
 
-	//blabla
+	//blabl
 	void training();  
+
+
 
 };
 
