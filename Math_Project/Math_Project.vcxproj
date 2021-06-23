@@ -140,10 +140,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Equation.cpp" />
+    <ClCompile Include="EquationEasy.cpp" />
+    <ClCompile Include="EquationHard.cpp" />
+    <ClCompile Include="EquationNormal.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Equation.h" />
+    <ClInclude Include="EquationEasy.h" />
+    <ClInclude Include="EquationHard.h" />
+    <ClInclude Include="EquationNormal.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

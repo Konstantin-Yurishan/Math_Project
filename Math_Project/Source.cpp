@@ -14,7 +14,7 @@
 
 #include <iostream>
 #include "Equation.h"
-
+#include "EquationEasy.h"
 
 int main()
 {
@@ -24,9 +24,9 @@ int main()
 	std::cout << "Enter the repeat number:";
 	std::cin >> repeat;
 
-	Equation training(repeat);
+	EquationEasy a(repeat);
 
-	training.training();
-
+	a.training();
+	
 	return 0;
 }
