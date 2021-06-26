@@ -38,7 +38,7 @@ void EquationEasy::training()
 		else {// /
 
 			sign = " / ";
-
+			//переделать! вывести из обратного умножению (проще, и меньше логических расходов)
 			while (true) {
 				x = rand() % difficult;
 				y = rand() % difficult;
