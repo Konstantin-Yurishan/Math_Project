@@ -13,18 +13,56 @@
 #include <iostream>
 #include "Equation.h"
 #include "EquationEasy.h"
+#include "EquationNormal.h"
+#include "EquationHard.h"
 
 int main()
 {
 
-	int repeat, range;
+	int repeat, dif;
 
-	std::cout << "Enter the repeat number:";
-	std::cin >> repeat;
+	while (true) {
 
-	EquationEasy a(repeat);
+		std::cout << "Choose the difficult." << std::endl;
+		std::cout << "1. Easy." << std::endl;
+		std::cout << "2. Normal." << std::endl;
+		std::cout << "1. Hard." << std::endl;
+		std::cout << "0. Exit." << std::endl;
+		std::cin >> dif;
 
-	a.training();
+
+		if (dif == 1) {
+			std::cout << "Enter the repeat number:";
+			std::cin >> repeat;
+			EquationEasy a(repeat);
+
+			a.training();
+		}
+		else if (dif == 2) {
+			std::cout << "Enter the repeat number:";
+			std::cin >> repeat;
+			EquationNormal b(repeat);
+
+			b.training();
+		}
+		else if (dif == 3) {
+			std::cout << "Enter the repeat number:";
+			std::cin >> repeat;
+			EquationHard c(repeat);
+
+			c.training();
+		}
+		else if (dif == 0) {
+			exit(0);//завершает всю программу сразу
+		}
+		else {
+			std::cout << "Wrong choice!" << std::endl;
+		}
+
+
+	}
+
+
 	
 	return 0;
 }

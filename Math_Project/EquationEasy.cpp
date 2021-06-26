@@ -3,15 +3,12 @@
 void EquationEasy::training()
 {
 
-	std::cout << "I'm born!" << std::endl;
-
 	srand(time(NULL));
 	std::chrono::steady_clock sc;//объект класса часы
 	auto start = sc.now();//берем тек время
 
 	int answear, num;
-	std::string sign = "";
-	std::cout << "I'm born!" << std::endl;
+	std::string equa = "";
 
 
 	//запись в файл
@@ -28,44 +25,24 @@ void EquationEasy::training()
 		num = rand() % 4;
 
 		if (num == 0) { //+
-			sign = " + ";
-			x = rand() % difficult;
-			y = rand() % difficult;
-			result = x + y;
+			equa = setSumm();
 		}
 		else if (num == 1) {//-
-			sign = " - ";
-			x = rand() % difficult;
-			y = rand() % difficult;
-			result = x - y;
+			
+			equa =setSub();
 		}
 		else if (num == 2) {//*
-			sign = " * ";
-			x = rand() % difficult;
-			y = rand() % difficult;
-			result = x * y;
+			equa =setMult();
 		}
 		else {// /
 
-			sign = " / ";
-			//переделать! вывести из обратного умножению (проще, и меньше логических расходов)
-			while (true) {
-				x = rand() % difficult;
-				y = rand() % difficult;
-
-				if (x < y || x % y != 0 || y == 0) { continue; }
-				else { break; }
-			}
-
-			result = x / y;
+			equa = setDel();
 
 		}
 
-		std::cout << "I'm born!" << std::endl;
-
 		while (true) {
 
-			std::cout << x << sign << y << " = ??" << std::endl;
+			std::cout << equa << std::endl;
 			std::cin >> answear;
 
 			if (answear == result) {
@@ -82,11 +59,52 @@ void EquationEasy::training()
 		}
 	}
 
-	std::cout << "I'm born!" << std::endl;
 
 	auto end = sc.now();//переменная окончания времени
 	auto time_span = static_cast<std::chrono::duration<double>>(end - start);
 
 	std::cout << "Your IQ is " << score << std::endl;
-	std::cout << "Time is " << time_span.count() << std::endl;
+	std::cout << "Time is " << time_span.count() << std::endl;  //огграничить количество знаков после запятой до 1
+
+}
+
+std::string EquationEasy::setSumm()
+{
+
+			x = rand() % difficult;
+			y = rand() % difficult;
+			result = x + y;
+			
+			return std::to_string(x) + " + " + std::to_string(y) + "??";
+}
+
+std::string EquationEasy::setSub()
+{
+			x = rand() % difficult;
+			y = rand() % difficult;
+result = x - y;
+return std::to_string(x) + " - " + std::to_string(y) + "??";
+}
+
+std::string EquationEasy::setDel()
+{
+	while (true) {
+		x = rand() % difficult;
+		y = rand() % difficult;
+
+		if (x < y || x % y != 0 || y == 0) { continue; }
+		else { break; }
+		
+	}
+	result = x / y;
+	return std::to_string(x) + " / " + std::to_string(y) + " = ??";
+	
+}
+
+std::string EquationEasy::setMult()
+{
+			x = rand() % difficult;
+			y = rand() % difficult;
+result = x * y;
+return std::to_string(x) + " * " + std::to_string(y) + "??";
 }
