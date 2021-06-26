@@ -1,1 +1,1 @@
-﻿}
+﻿#include "Equation.h"

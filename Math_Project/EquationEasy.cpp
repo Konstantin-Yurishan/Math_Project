@@ -13,6 +13,16 @@ void EquationEasy::training()
 	std::string sign = "";
 	std::cout << "I'm born!" << std::endl;
 
+
+	//запись в файл
+	std::ofstream out;
+	out.open("..\\log.txt");
+	//out.open("..\\log.txt", std::ios::app); //добавить без перезаписи
+	out << "Trello!" << std::endl;
+
+	out.close();
+
+	// закрытие файлы
 	while (repeat) {
 
 		num = rand() % 4;
