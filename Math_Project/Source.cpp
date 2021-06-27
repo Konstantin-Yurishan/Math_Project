@@ -18,15 +18,14 @@
 
 int main()
 {
-
+	
 	int repeat, dif;
-
+	
 	while (true) {
-
 		std::cout << "Choose the difficult." << std::endl;
 		std::cout << "1. Easy." << std::endl;
 		std::cout << "2. Normal." << std::endl;
-		std::cout << "1. Hard." << std::endl;
+		std::cout << "3. Hard." << std::endl;
 		std::cout << "0. Exit." << std::endl;
 		std::cin >> dif;
 
@@ -35,14 +34,12 @@ int main()
 			std::cout << "Enter the repeat number:";
 			std::cin >> repeat;
 			EquationEasy a(repeat);
-
 			a.training();
 		}
 		else if (dif == 2) {
 			std::cout << "Enter the repeat number:";
 			std::cin >> repeat;
 			EquationNormal b(repeat);
-
 			b.training();
 		}
 		else if (dif == 3) {
@@ -58,10 +55,7 @@ int main()
 		else {
 			std::cout << "Wrong choice!" << std::endl;
 		}
-
-
 	}
-
 
 	
 	return 0;

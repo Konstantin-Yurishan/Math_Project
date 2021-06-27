@@ -1,1 +1,36 @@
-Trello!
+/********** normal session with 2 **********/
+8 - 9 - 2 = ??
+result is -3
+player answer is -3
+9 + 6 - 8 = ??
+result is 7
+player answer is 7
+player iq is 2
+session time is9.19932
+
+/********** normal session with 1 **********/
+3 + 6 - 5 = ??
+result is 4
+player answer is 4
+player iq is 1
+session time is2.81601
+
+/********** normal session with 2 repeats **********/
+6 - 9 - 8 = ??
+result is -11
+player answer is -11
+8 / 8 + 3 = ??
+result is 3
+player answer is 4
+9 * 2 + 7 = ??
+result is 14
+/********** normal session with 2 repeats **********/
+2 * 7 + 7 = ??
+result is 21
+player answer is 21
+9 + 1 + 4 = ??
+result is 14
+player answer is 14
+player iq is 2
+session time is 5.15228
+

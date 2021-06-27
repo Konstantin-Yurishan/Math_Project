@@ -7,13 +7,9 @@ private:
 	int z;
 public:
 
-	EquationNormal(int repeat) : Equation(repeat) { difficult = 100; }
+	EquationNormal(int repeat) : Equation(repeat), z{ 0 } { difficult = 100;  srand(time(NULL)); }
 
 	void training();
-	std::string setSumm();
-	std::string setSub();
-	std::string setDel();
-	std::string setMult();
 	std::string setSign();
 	std::string complexEqua();
 };

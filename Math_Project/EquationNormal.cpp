@@ -13,37 +13,27 @@ void EquationNormal::training()
 
 	//запись в файл
 	std::ofstream out;
-	out.open("..\\log.txt");
-	//out.open("..\\log.txt", std::ios::app); //добавить без перезаписи
-	out << "Trello!" << std::endl;
+	//out.open("..\\log.txt");
+	out.open("..\\log.txt", std::ios::app); //добавить без перезаписи
+	
+	out << "/********** normal session with " << repeat << " repeats **********/" << std::endl;
 
-	out.close();
+	
 
 	// закрытие файлы
 	while (repeat) {
 
-		num = rand() % 4;
+		std::string equa = complexEqua();
 
-		if (num == 0) { //+
-			equa = setSumm();
-		}
-		else if (num == 1) {//-
-
-			equa = setSub();
-		}
-		else if (num == 2) {//*
-			equa = setMult();
-		}
-		else {// /
-
-			equa = setDel();
-
-		}
+		out << equa << std::endl;
+		out << "result is " << result << std::endl;
 
 		while (true) {
 
 			std::cout << equa << std::endl;
 			std::cin >> answear;
+
+			out << "player answer is " << answear << std::endl;
 
 			if (answear == result) {
 				std::cout << "Great!" << std::endl;
@@ -66,48 +56,13 @@ void EquationNormal::training()
 	std::cout << "Your IQ is " << score << std::endl;
 	std::cout << "Time is " << time_span.count() << std::endl;  //огграничить количество знаков после запятой до 1
 
+	out << "player iq is " << score << std::endl;
+	out << "session time is " << time_span.count() << std::endl << std::endl;
+
+
+	out.close();
 }
 
-std::string EquationNormal::setSumm()
-{
-
-	x = rand() % difficult;
-	y = rand() % difficult;
-	result = x + y;
-
-	return std::to_string(x) + " + " + std::to_string(y) + "??";
-}
-
-std::string EquationNormal::setSub()
-{
-	x = rand() % difficult;
-	y = rand() % difficult;
-	result = x - y;
-	return std::to_string(x) + " - " + std::to_string(y) + "??";
-}
-
-std::string EquationNormal::setDel()
-{
-	while (true) {
-		x = rand() % difficult;
-		y = rand() % difficult;
-
-		if (x < y || x % y != 0 || y == 0) { continue; }
-		else { break; }
-
-	}
-	result = x / y;
-	return std::to_string(x) + " / " + std::to_string(y) + " = ??";
-
-}
-
-std::string EquationNormal::setMult()
-{
-	x = rand() % difficult;
-	y = rand() % difficult;
-	result = x * y;
-	return std::to_string(x) + " * " + std::to_string(y) + "??";
-}
 
 std::string EquationNormal::setSign()
 {
@@ -118,21 +73,47 @@ std::string EquationNormal::setSign()
 std::string EquationNormal::complexEqua()
 {
 
-	z = rand() % difficult;
+	std::vector<std::string> signs;
+	std::vector<int> nums;
 
-	std::string sig = setSign();
-	std::string Newequa = setSumm() + sig + std::to_string(z);
 
-	if (sig == "-") {
-		result = result - z;
+	for (int i = 0; i < 2; i++) {
+		signs.push_back(setSign());//заполнение векетора с конца
 	}
-	else {
-		result = result + z;
-	}
-	
-	//конструктор собирает уравнение
-	//записываем в result результат
-	//возвращаем уравнение в виде строки
 
-	return std::string();
+
+	for (int i = 0; i < 3; i++) {
+		nums.push_back(rand() % (10 - 1) + 1);
+	}
+
+	std::vector<std::string> signs1(signs);
+	std::vector<int> nums1(nums);
+
+	for (int i = 0; i < 2; i++) {
+		if (signs.at(i) == "-") {//получение значение sings
+			result = nums.at(0) - nums.at(1);
+			nums.erase(nums.begin(), nums.begin() + 2);//cnbhft стираем два элемента
+			nums.insert(nums.begin(), result);//помещаем полученный результат в вектор
+		}
+		else {
+			result = nums.at(0) + nums.at(1);
+			nums.erase(nums.begin(), nums.begin() + 2);//cnbhft стираем два элемента
+			nums.insert(nums.begin(), result);//помещаем полученный результат в вектор
+		}
+	}
+
+	std::string equattt = "";
+
+	for (int i = 0; i < 2; i++) {
+		
+		equattt += std::to_string(nums1.at(i)) + " ";
+		equattt += signs1.at(i) + " ";
+
+		if (i == 1) {
+			equattt += std::to_string(nums1.at(i + 1)) + " = ??";
+		}
+	}
+
+
+	return equattt;
 }
