@@ -66,7 +66,20 @@ void EquationHard::training()
 
 std::string EquationHard::setSign()
 {
-	return rand() % 2 == 0 ? rand() % 2 == 0 ? "/" : "*" : rand() % 2 == 0 ? "-" : "+";
+	int variant = rand() % 4;
+
+	if (variant == 0) {
+		return "+";
+	}
+	else if (variant == 1) {
+		return "-";
+	}
+	else if (variant == 2) {
+		return "/";
+	}
+	else {
+		return "*";
+	}
 }
 
 
@@ -88,35 +101,39 @@ std::string EquationHard::complexEqua()
 	std::vector<std::string> signs1(signs);
 	std::vector<int> nums1(nums);
 
+
+/*
 	for (int i = 0; i < 2; i++) {
 
-		if (signs.at(i) == "*" || signs.at(i) == "/") {
+		if (signs.at(i) == "/") {
+			
 			if (signs.at(i) == "/") {//получение значение sings
 				result = nums.at(0) / nums.at(1);
 				signs.erase(signs.begin() + i, signs.begin() + i + 1);
 				nums.erase(nums.begin(), nums.begin() + 2);//cnbhft стираем два элемента
 				nums.insert(nums.begin(), result);//помещаем полученный результат в вектор
 			}
-			else {//получение значение sings
+		else if(signs.at(i) == "*"){ {//получение значение sings
 				result = nums.at(0) * nums.at(1);
 				signs.erase(signs.begin() + i, signs.begin() + i + 1);
 				nums.erase(nums.begin(), nums.begin() + 2);//cnbhft стираем два элемента
 				nums.insert(nums.begin(), result);//помещаем полученный результат в вектор
 			}
 		}
+	
+	
+		if (signs.at(i) == "-") {//получение значение sings
+			result = nums.at(0) - nums.at(1);
+			nums.erase(nums.begin(), nums.begin() + 2);//cnbhft стираем два элемента
+			nums.insert(nums.begin(), result);//помещаем полученный результат в вектор
+		}
+		else {
+			result = nums.at(0) + nums.at(1);
+			nums.erase(nums.begin(), nums.begin() + 2);//cnbhft стираем два элемента
+			nums.insert(nums.begin(), result);//помещаем полученный результат в вектор
+		}
 	}
-
-	if (signs.at(i) == "-") {//получение значение sings
-		result = nums.at(0) - nums.at(1);
-		nums.erase(nums.begin(), nums.begin() + 2);//cnbhft стираем два элемента
-		nums.insert(nums.begin(), result);//помещаем полученный результат в вектор
-	}
-	else {
-		result = nums.at(0) + nums.at(1);
-		nums.erase(nums.begin(), nums.begin() + 2);//cnbhft стираем два элемента
-		nums.insert(nums.begin(), result);//помещаем полученный результат в вектор
-	}
-
+*/
 	std::string equattt = "";
 
 	for (int i = 0; i < 2; i++) {
