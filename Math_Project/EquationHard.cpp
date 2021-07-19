@@ -1,4 +1,11 @@
 ﻿#include "EquationHard.h"
+#include <iostream>
+#include <string>
+#include <functional>
+#include <vector>
+#include <map>
+#include <cctype>
+#include <stack>
 
 void EquationHard::training()
 {
@@ -101,39 +108,6 @@ std::string EquationHard::complexEqua()
 	std::vector<std::string> signs1(signs);
 	std::vector<int> nums1(nums);
 
-
-/*
-	for (int i = 0; i < 2; i++) {
-
-		if (signs.at(i) == "/") {
-			
-			if (signs.at(i) == "/") {//получение значение sings
-				result = nums.at(0) / nums.at(1);
-				signs.erase(signs.begin() + i, signs.begin() + i + 1);
-				nums.erase(nums.begin(), nums.begin() + 2);//cnbhft стираем два элемента
-				nums.insert(nums.begin(), result);//помещаем полученный результат в вектор
-			}
-		else if(signs.at(i) == "*"){ {//получение значение sings
-				result = nums.at(0) * nums.at(1);
-				signs.erase(signs.begin() + i, signs.begin() + i + 1);
-				nums.erase(nums.begin(), nums.begin() + 2);//cnbhft стираем два элемента
-				nums.insert(nums.begin(), result);//помещаем полученный результат в вектор
-			}
-		}
-	
-	
-		if (signs.at(i) == "-") {//получение значение sings
-			result = nums.at(0) - nums.at(1);
-			nums.erase(nums.begin(), nums.begin() + 2);//cnbhft стираем два элемента
-			nums.insert(nums.begin(), result);//помещаем полученный результат в вектор
-		}
-		else {
-			result = nums.at(0) + nums.at(1);
-			nums.erase(nums.begin(), nums.begin() + 2);//cnbhft стираем два элемента
-			nums.insert(nums.begin(), result);//помещаем полученный результат в вектор
-		}
-	}
-*/
 	std::string equattt = "";
 
 	for (int i = 0; i < 2; i++) {
@@ -146,6 +120,100 @@ std::string EquationHard::complexEqua()
 		}
 	}
 
+	std::vector<std::string> OPZ;
+	std::stack<std::string> OP;
+
+	for (int i = 0; i < equattt.size(); i++) {
+
+		std::string temp = std::to_string(equattt.at(i));
+
+		if (equattt.at(i) >= '0' && equattt.at(i) <= '9') {
+			OPZ.push_back(temp);
+		}
+		else {
+			if ((temp == "*" || temp == "/") && (OP.top() == "*" || OP.top() == "/")) {
+				OPZ.push_back(OP.top());
+				OP.pop();
+				OP.push(temp);
+			}
+			else {
+				OP.push(temp);
+			}
+			
+		}
+
+
+
+
+	}
+
 
 	return equattt;
+}
+
+std::string EquationHard::makePolish(const std::string& str)
+{
+	std::string srpn;
+	std::string::size_type ind;
+
+	while ((ind = str.find(' ')) != std::string::npos) {
+		str.erase(ind, 1);
+	}
+
+
+	std::map<char, size_t> map; // карта весов символов
+	map.insert(std::make_pair('*', 3));
+	map.insert(std::make_pair('/', 3));
+	map.insert(std::make_pair('+', 2));
+	map.insert(std::make_pair('-', 2));
+	map.insert(std::make_pair('(', 1));
+	std::stack<char> stack;
+	for (auto c : str) // формировка результирующей строки в ОПЗ
+	{
+		if (!isalnum(c) && ('.' != c))
+		{
+			srpn += ' ';
+			if (')' == c)
+			{
+				while (stack.top() != '(')
+				{
+					srpn += stack.top();
+					stack.pop();
+					srpn += ' ';
+				}
+				stack.pop();
+			}
+			else if ('(' == c)
+			{
+				stack.push(c);
+			}
+			else if (stack.empty() || (map[stack.top()] < map[c]))
+			{
+				stack.push(c);
+			}
+			else
+			{
+				do
+				{
+					srpn += stack.top();
+					srpn += ' ';
+					stack.pop();
+				} while (!(stack.empty() || (map[stack.top()] < map[c])));
+				stack.push(c);
+			}
+		}
+		else
+		{
+			srpn += c;
+		}
+	}
+	while (!stack.empty())// остаток из стека добавляется в результ. строку
+	{
+		srpn += stack.top();
+		srpn += ' ';
+		stack.pop();
+	}
+	std::cout << srpn << std::endl; // результирующая строка в ОПЗ
+
+	return srpn;
 }

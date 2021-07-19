@@ -12,5 +12,7 @@ public:
 	void training();
 	std::string setSign();
 	std::string complexEqua();
+
+	std::string makePolish(const std::string&);
 };
 
