@@ -66,7 +66,6 @@ void EquationHard::training()
 	out << "player iq is " << score << std::endl;
 	out << "session time is " << time_span.count() << std::endl << std::endl;
 
-
 	out.close();
 }
 
@@ -98,12 +97,13 @@ std::string EquationHard::complexEqua()
 
 
 	for (int i = 0; i < 2; i++) {
-		signs.push_back(setSign());//заполнение векетора с конца
+		signs.push_back(setSign());//заполнение вектора с конца
 	}
 
 	for (int i = 0; i < 3; i++) {
 		nums.push_back(rand() % (10 - 1) + 1);
 	}
+
 
 	std::vector<std::string> signs1(signs);
 	std::vector<int> nums1(nums);
@@ -116,50 +116,80 @@ std::string EquationHard::complexEqua()
 		equattt += signs1.at(i) + " ";
 
 		if (i == 1) {
-			equattt += std::to_string(nums1.at(i + 1)) + " = ??";
+			equattt += std::to_string(nums1.at(i + 1));
 		}
 	}
 
-	std::vector<std::string> OPZ;
-	std::stack<std::string> OP;
+	equattt += "= ??";
 
-	for (int i = 0; i < equattt.size(); i++) {
+	std::string OPZ = makePolish(equattt);
+	
+	std::stack<int> stk;
+	
+	result = 0;
 
-		std::string temp = std::to_string(equattt.at(i));
+	std::cout << OPZ << std::endl;
 
-		if (equattt.at(i) >= '0' && equattt.at(i) <= '9') {
-			OPZ.push_back(temp);
+	std::cout << equattt << std::endl;
+
+	int a, b;
+
+	for (int i = 0; i < 9; i +=2) {
+
+		if (std::isdigit(OPZ.at(i))) {
+			std::string s = OPZ.substr(i,1);
+			stk.push(std::stoi(s));
 		}
 		else {
-			if ((temp == "*" || temp == "/") && (OP.top() == "*" || OP.top() == "/")) {
-				OPZ.push_back(OP.top());
-				OP.pop();
-				OP.push(temp);
+			if (OPZ[i] == '-') {
+				b = stk.top();
+				stk.pop();
+				a = stk.top();
+				stk.pop();
+				stk.push(a - b);
 			}
-			else {
-				OP.push(temp);
+			else if (OPZ[i] == '+') {
+				b = stk.top();
+				stk.pop();
+				a = stk.top();
+				stk.pop();
+				stk.push(a + b);
 			}
-			
+			else if (OPZ[i] == '/') {
+				b = stk.top();
+				stk.pop();
+				a = stk.top();
+				stk.pop();
+				stk.push(a / b);
+			}
+			else if (OPZ[i] == '*') {
+				b = stk.top();
+				stk.pop();
+				a = stk.top();
+				stk.pop();
+				stk.push(a * b);
+			}
 		}
 
-
-
-
 	}
+
+	result = stk.top();
+	
 
 
 	return equattt;
 }
 
-std::string EquationHard::makePolish(const std::string& str)
+std::string EquationHard::makePolish(std::string& str)
 {
 	std::string srpn;
 	std::string::size_type ind;
 
+	
 	while ((ind = str.find(' ')) != std::string::npos) {
 		str.erase(ind, 1);
 	}
-
+	
 
 	std::map<char, size_t> map; // карта весов символов
 	map.insert(std::make_pair('*', 3));
@@ -167,7 +197,9 @@ std::string EquationHard::makePolish(const std::string& str)
 	map.insert(std::make_pair('+', 2));
 	map.insert(std::make_pair('-', 2));
 	map.insert(std::make_pair('(', 1));
+
 	std::stack<char> stack;
+
 	for (auto c : str) // формировка результирующей строки в ОПЗ
 	{
 		if (!isalnum(c) && ('.' != c))
@@ -213,7 +245,8 @@ std::string EquationHard::makePolish(const std::string& str)
 		srpn += ' ';
 		stack.pop();
 	}
-	std::cout << srpn << std::endl; // результирующая строка в ОПЗ
+
+	//std::cout << srpn << std::endl; // результирующая строка в ОПЗ
 
 	return srpn;
 }

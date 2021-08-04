@@ -115,3 +115,119 @@ player answer is 0
 player iq is 10
 session time is 9.48783
 
+/********** normal session with 3 repeats **********/
+4 / 7 + 1 = ??
+result is 0
+player answer is 4
+3 - 8 / 8 = ??
+result is 0
+player answer is 2
+7 / 9 * 9 = ??
+result is 0
+player answer is 0
+1 * 6 - 2 = ??
+result is 0
+player answer is 0
+1 / 7 / 1 = ??
+result is 0
+player answer is 0
+player iq is 1
+session time is 76.9685
+
+/********** normal session with 1 repeats **********/
+1 * 4 / 8 = ??
+result is 0
+player answer is 0
+player iq is 1
+session time is 2.07873
+
+/********** normal session with 2 repeats **********/
+7 + 3 * 
+result is 0
+/********** normal session with 2 repeats **********/
+8/4*8 = ??
+result is 0
+player answer is 16
+9*3+8 = ??
+result is 0
+player answer is 0
+1-9/9 = ??
+result is 0
+/********** normal session with 2 repeats **********/
+/********** normal session with 2 repeats **********/
+3*3/5=??
+result is 0
+player answer is 4
+8/4+5=??
+result is 5
+player answer is 0
+9+3+5=??
+result is 17
+player answer is 17
+7+7/4=??
+result is 7
+player answer is 8
+5-4+7=??
+result is 6
+player answer is 8
+7-7+9=??
+result is 9
+player answer is 0
+3-5/9=??
+result is -2
+player answer is 2
+4*1*2=??
+result is 8
+player answer is 3
+9*1-9=??
+result is 0
+player answer is 1
+3*4/4=??
+result is 0
+player answer is 23
+1-6*6=??
+result is 35
+player answer is 3
+2-7-8=??
+result is 3
+player answer is 3
+player iq is -8
+session time is 144.271
+
+/********** normal session with 5 repeats **********/
+2+9+6=??
+result is 17
+player answer is 17
+/********** normal session with 2 repeats **********/
+/********** normal session with 2 repeats **********/
+2-2-2=??
+result is -2
+player answer is -2
+6-1/7=??
+result is 6
+player answer is 6
+player iq is 2
+session time is 17.8875
+
+/********** normal session with 5 repeats **********/
+5/7+6=??
+result is 6
+player answer is 7
+1-1-2=??
+result is -2
+player answer is -2
+6*9-5=??
+result is 49
+player answer is 49
+6-4/5=??
+result is 6
+player answer is 6
+2-4-1=??
+result is -3
+player answer is -3
+4-8-5=??
+result is -9
+player answer is -9
+player iq is 4
+session time is 55.8551
+

@@ -32,6 +32,8 @@ int main()
 	
 	int repeat, dif;
 	
+	
+
 	while (true) {
 		std::cout << "Choose the difficult." << std::endl;
 		std::cout << "1. Easy." << std::endl;
@@ -67,6 +69,7 @@ int main()
 			std::cout << "Wrong choice!" << std::endl;
 		}
 	}
+
 
 	
 	return 0;
