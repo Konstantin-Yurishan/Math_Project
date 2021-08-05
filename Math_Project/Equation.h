@@ -16,6 +16,10 @@ protected:
 	int repeat;
 	int score;
 	int difficult;
+	int top; // верхня граница для числа в уравнении
+	int bottom; // нижняя граница для числе в уравнении
+	int operands; // количество операндов
+	int operators; // количество операторов
 	
 public:
 

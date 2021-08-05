@@ -231,3 +231,64 @@ player answer is -9
 player iq is 4
 session time is 55.8551
 
+/********** normal session with 3 repeats **********/
+5-1-5=??
+result is -1
+player answer is -1
+6*7+5=??
+result is 47
+player answer is 47
+4/1*6=??
+result is 24
+player answer is 24
+player iq is 3
+session time is 25.7766
+
+/********** normal session with 3 repeats **********/
+/********** normal session with 3 repeats **********/
+/********** normal session with 3 repeats **********/
+/********** normal session with 3 repeats **********/
+/********** normal session with 3 repeats **********/
+/********** normal session with 3 repeats **********/
+/********** normal session with 3 repeats **********/
+9*9*9=??
+result is 729
+player answer is 729
+3+3*3=??
+result is 12
+player answer is 12
+7-4*9=??
+result is -29
+player answer is -29
+player iq is 3
+session time is 64.1295
+
+/********** normal session with 3 repeats **********/
+/********** normal session with 3 repeats **********/
+0-7*-1=??
+result is 7
+player answer is 7
+3-2-0=??
+result is 1
+player answer is 1
+/********** normal session with 3 repeats **********/
+4*-10*-7=??
+result is 0
+player answer is 3
+/********** normal session with 5 repeats **********/
+7/-7-9=??
+result is 7
+player answer is -10
+/********** normal session with 5 repeats **********/
+7--3*4=??
+result is 7
+player answer is 19
+/********** normal session with 3 repeats **********/
+/********** normal session with 3 repeats **********/
+1--7+0=??
+result is 1
+player answer is 3
+-10/10+1=??
+result is 1
+player answer is 3
+/********** normal session with 3 repeats **********/

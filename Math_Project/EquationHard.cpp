@@ -25,8 +25,6 @@ void EquationHard::training()
 
 	out << "/********** normal session with " << repeat << " repeats **********/" << std::endl;
 
-
-
 	// закрытие файлы
 	while (repeat) {
 
@@ -95,13 +93,25 @@ std::string EquationHard::complexEqua()
 	std::vector<std::string> signs;
 	std::vector<int> nums;
 
+	std::random_device rd; // obtain a random number from hardware
+	std::mt19937 gen(rd()); // seed the generator
 
-	for (int i = 0; i < 2; i++) {
+	
+
+	top = 10;
+	bottom = -10;
+
+	operands = 3;
+	operators = 2;
+
+	std::uniform_int_distribution<> distr(bottom, top); // define the range
+
+	for (int i = 0; i < operators; i++) {
 		signs.push_back(setSign());//заполнение вектора с конца
 	}
 
-	for (int i = 0; i < 3; i++) {
-		nums.push_back(rand() % (10 - 1) + 1);
+	for (int i = 0; i < operands; i++) {
+		nums.push_back(distr(gen));
 	}
 
 
@@ -110,7 +120,7 @@ std::string EquationHard::complexEqua()
 
 	std::string equattt = "";
 
-	for (int i = 0; i < 2; i++) {
+	for (int i = 0; i < operators; i++) {
 
 		equattt += std::to_string(nums1.at(i)) + " ";
 		equattt += signs1.at(i) + " ";
@@ -123,59 +133,12 @@ std::string EquationHard::complexEqua()
 	equattt += "= ??";
 
 	std::string OPZ = makePolish(equattt);
-	
-	std::stack<int> stk;
-	
-	result = 0;
 
-	std::cout << OPZ << std::endl;
+	result = getResult(OPZ);
 
-	std::cout << equattt << std::endl;
+	//std::cout << OPZ << std::endl;
 
-	int a, b;
-
-	for (int i = 0; i < 9; i +=2) {
-
-		if (std::isdigit(OPZ.at(i))) {
-			std::string s = OPZ.substr(i,1);
-			stk.push(std::stoi(s));
-		}
-		else {
-			if (OPZ[i] == '-') {
-				b = stk.top();
-				stk.pop();
-				a = stk.top();
-				stk.pop();
-				stk.push(a - b);
-			}
-			else if (OPZ[i] == '+') {
-				b = stk.top();
-				stk.pop();
-				a = stk.top();
-				stk.pop();
-				stk.push(a + b);
-			}
-			else if (OPZ[i] == '/') {
-				b = stk.top();
-				stk.pop();
-				a = stk.top();
-				stk.pop();
-				stk.push(a / b);
-			}
-			else if (OPZ[i] == '*') {
-				b = stk.top();
-				stk.pop();
-				a = stk.top();
-				stk.pop();
-				stk.push(a * b);
-			}
-		}
-
-	}
-
-	result = stk.top();
-	
-
+	//std::cout << equattt << std::endl;
 
 	return equattt;
 }
@@ -185,12 +148,10 @@ std::string EquationHard::makePolish(std::string& str)
 	std::string srpn;
 	std::string::size_type ind;
 
-	
 	while ((ind = str.find(' ')) != std::string::npos) {
 		str.erase(ind, 1);
 	}
 	
-
 	std::map<char, size_t> map; // карта весов символов
 	map.insert(std::make_pair('*', 3));
 	map.insert(std::make_pair('/', 3));
@@ -239,6 +200,7 @@ std::string EquationHard::makePolish(std::string& str)
 			srpn += c;
 		}
 	}
+
 	while (!stack.empty())// остаток из стека добавляется в результ. строку
 	{
 		srpn += stack.top();
@@ -246,7 +208,53 @@ std::string EquationHard::makePolish(std::string& str)
 		stack.pop();
 	}
 
-	//std::cout << srpn << std::endl; // результирующая строка в ОПЗ
-
 	return srpn;
+}
+
+int EquationHard::getResult(std::string& OPZ) {
+
+	std::stack<int> stk;
+
+	int a, b;
+
+	for (int i = 0; i < 9; i += 2) {
+
+		if (std::isdigit(OPZ.at(i))) {
+			std::string s = OPZ.substr(i, 1);
+			stk.push(std::stoi(s));
+		}
+		else {
+			if (OPZ[i] == '-') {
+				b = stk.top();
+				stk.pop();
+				a = stk.top();
+				stk.pop();
+				stk.push(a - b);
+			}
+			else if (OPZ[i] == '+') {
+				b = stk.top();
+				stk.pop();
+				a = stk.top();
+				stk.pop();
+				stk.push(a + b);
+			}
+			else if (OPZ[i] == '/') {
+				b = stk.top();
+				stk.pop();
+				a = stk.top();
+				stk.pop();
+				stk.push(a / b);
+			}
+			else if (OPZ[i] == '*') {
+				b = stk.top();
+				stk.pop();
+				a = stk.top();
+				stk.pop();
+				stk.push(a * b);
+			}
+		}
+	}
+
+	return stk.top();
+
 }
