@@ -17,6 +17,5 @@ public:
 	std::string makePolish(std::string&);
 	int getResult(std::string&);
 
-	
-};
 
+};

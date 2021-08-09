@@ -6,7 +6,7 @@
 #include <fstream>
 #include <vector>
 
-class Equation  
+class Equation
 {
 protected:
 
@@ -20,7 +20,7 @@ protected:
 	int bottom; // нижняя граница для числе в уравнении
 	int operands; // количество операндов
 	int operators; // количество операторов
-	
+
 public:
 
 	Equation(int repeat) : repeat{ repeat }, x{ 0 }, y{ 0 }, result{ 0 }, score{ repeat }, difficult{ 0 } {};
@@ -36,9 +36,8 @@ public:
 	int getResult() { return result; }
 	int getRepeat() { return repeat; }
 
-	void training();  
+	void training();
 
 
 
 };
-

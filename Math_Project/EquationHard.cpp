@@ -96,7 +96,7 @@ std::string EquationHard::complexEqua()
 	std::random_device rd; // obtain a random number from hardware
 	std::mt19937 gen(rd()); // seed the generator
 
-	
+
 
 	top = 10;
 	bottom = -10;
@@ -130,16 +130,17 @@ std::string EquationHard::complexEqua()
 		}
 	}
 
-	equattt += "= ??";
+	
 
 	std::string OPZ = makePolish(equattt);
 
+	std::cout << OPZ << std::endl;
+
 	result = getResult(OPZ);
 
-	//std::cout << OPZ << std::endl;
+	std::cout << equattt << std::endl;
 
-	//std::cout << equattt << std::endl;
-
+	equattt += "= ??";
 	return equattt;
 }
 
@@ -148,10 +149,14 @@ std::string EquationHard::makePolish(std::string& str)
 	std::string srpn;
 	std::string::size_type ind;
 
+	std::cout << str << std::endl;
+
 	while ((ind = str.find(' ')) != std::string::npos) {
 		str.erase(ind, 1);
 	}
-	
+
+	std::cout << str << std::endl;
+
 	std::map<char, size_t> map; // карта весов символов
 	map.insert(std::make_pair('*', 3));
 	map.insert(std::make_pair('/', 3));
@@ -215,11 +220,16 @@ int EquationHard::getResult(std::string& OPZ) {
 
 	std::stack<int> stk;
 
-	int a, b;
+	int a = 0, b = 0;
 
-	for (int i = 0; i < 9; i += 2) {
+	for (int i = 0; i < OPZ.length(); i++) {
 
 		if (std::isdigit(OPZ.at(i))) {
+			if (i < OPZ.length() - 1) if (std::isdigit(OPZ.at(i + 1))) {
+				std::string s = OPZ.substr(i, 2);
+				stk.push(std::stoi(s));
+				continue;
+			}
 			std::string s = OPZ.substr(i, 1);
 			stk.push(std::stoi(s));
 		}
@@ -227,29 +237,41 @@ int EquationHard::getResult(std::string& OPZ) {
 			if (OPZ[i] == '-') {
 				b = stk.top();
 				stk.pop();
-				a = stk.top();
-				stk.pop();
+				if (!stk.empty()) {
+					a = stk.top();
+					stk.pop();
+				}
 				stk.push(a - b);
 			}
 			else if (OPZ[i] == '+') {
 				b = stk.top();
 				stk.pop();
-				a = stk.top();
-				stk.pop();
+				if (!stk.empty()) {
+					a = stk.top();
+					stk.pop();
+				}
 				stk.push(a + b);
 			}
 			else if (OPZ[i] == '/') {
 				b = stk.top();
+				if (b == 0) {
+					std::cout << "Error!" << std::endl;
+					return 0;
+				}
 				stk.pop();
-				a = stk.top();
-				stk.pop();
+				if (!stk.empty()) {
+					a = stk.top();
+					stk.pop();
+				}
 				stk.push(a / b);
 			}
 			else if (OPZ[i] == '*') {
 				b = stk.top();
 				stk.pop();
-				a = stk.top();
-				stk.pop();
+				if (!stk.empty()) {
+					a = stk.top();
+					stk.pop();
+				}
 				stk.push(a * b);
 			}
 		}
