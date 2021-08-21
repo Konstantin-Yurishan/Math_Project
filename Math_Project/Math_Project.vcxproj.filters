@@ -21,9 +21,15 @@
     <ClCompile Include="Equation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Play_Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Equation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Play_Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

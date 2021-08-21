@@ -27,8 +27,12 @@ void Equation::complexEqua()
 
 std::string Equation::setSign()
 {
+	std::random_device rd; // obtain a random number from hardware
+	std::mt19937 gen(rd()); // seed the generator
+	std::uniform_int_distribution<> distr(0, 3); // define the range
+
 	std::string sign[4] = { "-", "+", "*", "/" };
-	return sign[rand() % 4];
+	return sign[distr(gen)];
 }
 
 std::string Equation::makePolish(std::string& str)
